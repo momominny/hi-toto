@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi! Toto 🍅</title>
+    <link rel="icon" href="https://twemoji.maxcdn.com/v/latest/svg/1f345.svg" type="image/svg+xml"> <!-- ไอคอนมะเขือเทศ -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            background-color: #ffe4e1;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 3em;
+            animation: bounce 1s infinite; /* เอฟเฟคกระโดด */
+        }
+        button {
+            background-color: #ffb6c1;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.2s, background-color 0.2s; /* เพิ่มการเปลี่ยนสีพื้นหลัง */
+            margin: 10px; /* เพิ่ม margin เพื่อเว้นระยะ */
+        }
+        button:hover {
+            background-color: #ff99cc;
+            transform: scale(1.1); /* ขยายปุ่มเมื่อเอาเมาส์ไปวาง */
+        }
+        #okayBtn {
+            transition: transform 0.2s;
+        }
+        img {
+            width: 300px;
+            height: auto;
+            margin-top: 20px;
+            display: none; /* ซ่อนรูปในตอนแรก */
+            position: absolute; /* เปลี่ยนเป็น absolute */
+            top: 50%; /* ตั้งตำแหน่งแนวตั้ง */
+            left: 50%; /* ตั้งตำแหน่งแนวนอน */
+            transform: translate(-50%, -50%) scale(0); /* เริ่มต้นที่เล็ก */
+            transition: transform 0.5s; /* การเปลี่ยนแปลงขนาดของรูป */
+        }
+        img.show {
+            transform: translate(-50%, -50%) scale(1); /* ขยายรูปเมื่อแสดง */
+        }
+        .hidden {
+            display: none;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ไปเดตกันไหม?</h1>
+    <button id="noBtn">No</button>
+    <button id="okayBtn">Okay</button>
+    <img id="happyImage" src="happy_sticker2.png" alt="Happy Sticker" />
+    <p id="response" class="hidden">เย่!!!!! 🍅❤️ 🐱 💐</p>
+
+    <script>
+        document.getElementById("noBtn").addEventListener("click", function() {
+            const okayBtn = document.getElementById("okayBtn");
+            const currentSize = parseFloat(window.getComputedStyle(okayBtn).fontSize);
+            okayBtn.style.fontSize = (currentSize + 5) + "px"; // เพิ่มขนาดปุ่ม Okay
+        });
+
+        document.getElementById("okayBtn").addEventListener("click", function() {
+            const happyImage = document.getElementById("happyImage");
+            happyImage.classList.add('show'); // เพิ่มคลาสเพื่อแสดงรูป
+            happyImage.style.display = 'block'; // แสดงรูป
+            document.getElementById("response").classList.remove("hidden"); // แสดงข้อความ
+            document.getElementById("noBtn").style.display = 'none'; // ซ่อนปุ่ม No
+            this.style.display = 'none'; // ซ่อนปุ่ม Okay
+            document.getElementById("response").style.animation = 'fadeIn 1s'; // เพิ่มเอฟเฟค Fade In สำหรับข้อความ
+        });
+    </script>
+
+    <!-- ใช้ไอคอนจาก Twemoji -->
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+    <script>
+        twemoji.parse(document.body);
+    </script>
+
+</body>
+</html>
